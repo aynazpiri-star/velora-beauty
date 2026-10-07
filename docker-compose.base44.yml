@@ -1,0 +1,37 @@
+name: velora-beauty
+
+services:
+  web:
+    image: node:22
+    working_dir: /app
+    restart: on-failure
+    environment:
+      # Sandbox-only values. BASE44_PREVIEW_MODE is supplied by the platform and
+      # passed through unchanged; the app keeps its normal behaviour whenever it
+      # is absent or different from "1".
+      - BASE44_PREVIEW_MODE
+      - BASE44_SANDBOX_HOST_DOMAIN
+      - BASE44_PUBLIC_HOST_SUFFIX
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      - CI=true
+    command: ["sh", "-ec", "npm ci --no-audit --no-fund && exec npm run dev"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    healthcheck:
+      # Real responsiveness check: the dev server must answer / with the app
+      # shell. Uses node, which is always present in this image.
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:3000/').then(r=>r.text().then(t=>process.exit(r.ok&&t.length>500?0:1))).catch(()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 120s
+
+volumes:
+  node_modules:

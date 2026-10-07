@@ -1,0 +1,823 @@
+// Centralised product catalogue for VELORA.
+// `images` are ordered: [0] is the card / hero shot, the rest form the gallery.
+
+const photo = (id, w = 900) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+
+export const CATEGORIES = [
+  {
+    slug: 'skincare',
+    name: 'Skincare',
+    tagline: 'Healthy, glowing skin',
+    image: photo(7691162, 700),
+    description:
+      'Serums, creams and toners formulated to keep your skin calm, hydrated and luminous.',
+  },
+  {
+    slug: 'makeup',
+    name: 'Makeup',
+    tagline: 'Enhance your natural beauty',
+    image: photo(4938513, 700),
+    description:
+      'Soft, buildable colour designed to let your natural features do the talking.',
+  },
+  {
+    slug: 'haircare',
+    name: 'Haircare',
+    tagline: 'Stronger, healthier hair',
+    image: photo(7428095, 700),
+    description:
+      'Gentle, nutrient-rich washes and treatments for softness, shine and strength.',
+  },
+  {
+    slug: 'bodycare',
+    name: 'Body Care',
+    tagline: 'Pamper your body',
+    image: photo(8015900, 700),
+    description:
+      'Butters, lotions and scrubs that turn an everyday routine into a small ritual.',
+  },
+  {
+    slug: 'fragrance',
+    name: 'Fragrance',
+    tagline: 'Scents that inspire',
+    image: photo(264819, 700),
+    description:
+      'Layered, long-wearing scents built around florals, warm woods and clean musk.',
+  },
+  {
+    slug: 'wellness',
+    name: 'Wellness',
+    tagline: 'Feel good every day',
+    image: photo(5938217, 700),
+    description:
+      'Slow, restorative essentials that support calm skin and a calmer mind.',
+  },
+];
+
+export const SKIN_CONCERNS = [
+  'Dryness',
+  'Dullness',
+  'Fine lines',
+  'Uneven tone',
+  'Sensitivity',
+  'Oiliness',
+];
+
+const base = {
+  featured: false,
+  newArrival: false,
+  bestSeller: false,
+  featuredCollection: false,
+  sets: false,
+};
+
+export const PRODUCTS = [
+  {
+    ...base,
+    id: 'vel-serum-01',
+    slug: 'radiance-vitamin-c-serum',
+    name: 'Radiance Vitamin C Serum',
+    category: 'skincare',
+    type: 'Serum',
+    price: 32,
+    oldPrice: 40,
+    rating: 4.9,
+    reviewCount: 128,
+    size: '30 ml',
+    bestSeller: true,
+    featured: true,
+    featuredCollection: true,
+    shortDescription:
+      'A brightening daily serum with stabilised vitamin C that softens the look of dark spots and revives tired skin.',
+    description:
+      'Radiance Vitamin C Serum pairs stabilised vitamin C with botanical ferments to lift dullness and even the look of tone. The lightweight texture absorbs in seconds and layers beautifully under moisturiser, so skin looks rested and lit from within by the second week.',
+    skinType: ['Normal', 'Dry', 'Combination'],
+    concerns: ['Dullness', 'Uneven tone'],
+    ingredients: [
+      'Stabilised Vitamin C (10%)',
+      'Kakadu plum extract',
+      'Hyaluronic acid',
+      'Chamomile water',
+      'Vitamin E',
+    ],
+    benefits: [
+      'Visibly brighter, more even tone',
+      'Supports natural collagen look',
+      'Lightweight, fast-absorbing finish',
+      'Fragrance-free and dermatologist tested',
+    ],
+    howToUse: [
+      'Apply 3–4 drops to clean, dry skin each morning.',
+      'Press gently into cheeks, forehead and chin.',
+      'Follow with moisturiser and daily SPF.',
+      'Build up use over two weeks if your skin is sensitive.',
+    ],
+    images: [photo(3762879), photo(8101511), photo(8100788)],
+  },
+  {
+    ...base,
+    id: 'vel-cream-02',
+    slug: 'hydrating-face-cream',
+    name: 'Hydrating Face Cream',
+    category: 'skincare',
+    type: 'Moisturiser',
+    price: 28,
+    rating: 4.8,
+    reviewCount: 96,
+    size: '50 ml',
+    bestSeller: true,
+    featured: true,
+    featuredCollection: true,
+    shortDescription:
+      'A cushioned everyday cream that keeps skin plump and comfortable from morning to night.',
+    description:
+      'Hydrating Face Cream is a soft, breathable moisturiser built on squalane and ceramides. It restores the look of a healthy barrier without heaviness, leaving skin smooth, calm and ready for makeup.',
+    skinType: ['Normal', 'Dry', 'Sensitive'],
+    concerns: ['Dryness', 'Sensitivity'],
+    ingredients: [
+      'Squalane',
+      'Ceramide complex',
+      'Shea butter',
+      'Oat kernel extract',
+      'Panthenol',
+    ],
+    benefits: [
+      'Deep, lasting hydration',
+      'Strengthens the look of the skin barrier',
+      'Non-greasy, makeup-friendly base',
+      'Gentle enough for reactive skin',
+    ],
+    howToUse: [
+      'Warm a pea-sized amount between fingertips.',
+      'Smooth over face and neck morning and evening.',
+      'Use after serum for a layered routine.',
+    ],
+    images: [photo(10221858), photo(8100775), photo(8100788)],
+  },
+  {
+    ...base,
+    id: 'vel-toner-03',
+    slug: 'rose-glow-face-toner',
+    name: 'Rose Glow Face Toner',
+    category: 'skincare',
+    type: 'Toner',
+    price: 24,
+    rating: 4.9,
+    reviewCount: 84,
+    size: '150 ml',
+    bestSeller: true,
+    featuredCollection: true,
+    shortDescription:
+      'An alcohol-free rose water toner that refreshes, softens and preps skin for everything that follows.',
+    description:
+      'Rose Glow Face Toner is a gentle, alcohol-free mist of damask rose water and glycerin. It removes the last trace of cleanser, calms the look of redness and leaves skin soft and receptive to serum.',
+    skinType: ['All skin types'],
+    concerns: ['Sensitivity', 'Dullness'],
+    ingredients: [
+      'Damask rose water',
+      'Glycerin',
+      'Allantoin',
+      'Green tea extract',
+      'Rice ferment',
+    ],
+    benefits: [
+      'Soothes the look of redness',
+      'Balances without stripping',
+      'Preps skin to absorb serum',
+      'Alcohol-free and pH balanced',
+    ],
+    howToUse: [
+      'Sweep over clean skin with a cotton pad or press in with palms.',
+      'Use morning and evening after cleansing.',
+      'Follow with serum while skin is still damp.',
+    ],
+    images: [photo(16329380), photo(12124831), photo(4202382)],
+  },
+  {
+    ...base,
+    id: 'vel-oil-04',
+    slug: 'nourishing-face-oil',
+    name: 'Nourishing Face Oil',
+    category: 'skincare',
+    type: 'Face Oil',
+    price: 35,
+    rating: 4.8,
+    reviewCount: 72,
+    size: '30 ml',
+    bestSeller: true,
+    newArrival: true,
+    shortDescription:
+      'A golden blend of cold-pressed botanical oils that seals in moisture and leaves a quiet, healthy sheen.',
+    description:
+      'Nourishing Face Oil brings together rosehip, jojoba and marula oils in a fast-melting blend. A few drops at night soften the look of dry patches and leave skin supple and comfortable by morning.',
+    skinType: ['Dry', 'Normal'],
+    concerns: ['Dryness', 'Fine lines'],
+    ingredients: [
+      'Cold-pressed rosehip oil',
+      'Jojoba oil',
+      'Marula oil',
+      'Sea buckthorn',
+      'Vitamin E',
+    ],
+    benefits: [
+      'Locks in hydration overnight',
+      'Softens the look of fine dry lines',
+      'Rich in natural antioxidants',
+      'Absorbs without a heavy residue',
+    ],
+    howToUse: [
+      'Warm 2–3 drops between your palms.',
+      'Press into skin as the final evening step.',
+      'Add a drop to moisturiser for extra comfort in winter.',
+    ],
+    images: [photo(6801176), photo(35899861), photo(8101511)],
+  },
+  {
+    ...base,
+    id: 'vel-cleanser-05',
+    slug: 'gentle-daily-cleanser',
+    name: 'Gentle Daily Cleanser',
+    category: 'skincare',
+    type: 'Cleanser',
+    price: 22,
+    rating: 4.9,
+    reviewCount: 143,
+    size: '200 ml',
+    bestSeller: true,
+    featured: true,
+    featuredCollection: true,
+    shortDescription:
+      'A milky, low-foam cleanser that lifts away the day without leaving skin tight or stripped.',
+    description:
+      'Gentle Daily Cleanser turns into a soft milk that removes sunscreen, makeup and city grime while respecting the skin barrier. Skin is left clean, calm and never squeaky.',
+    skinType: ['All skin types', 'Sensitive'],
+    concerns: ['Sensitivity'],
+    ingredients: [
+      'Amino-acid surfactants',
+      'Glycerin',
+      'Chamomile',
+      'Beta-glucan',
+      'Prebiotic ferment',
+    ],
+    benefits: [
+      'Removes makeup and SPF in one step',
+      'Leaves skin soft, not tight',
+      'Supports a balanced microbiome look',
+      'Soap-free and fragrance-free',
+    ],
+    howToUse: [
+      'Massage one pump onto damp skin for 30 seconds.',
+      'Add a little water to emulsify, then rinse.',
+      'Use morning and night.',
+    ],
+    images: [photo(8015792), photo(16008944), photo(8015900)],
+  },
+  {
+    ...base,
+    id: 'vel-lip-06',
+    slug: 'velvet-lip-tint',
+    name: 'Velvet Lip Tint',
+    category: 'makeup',
+    type: 'Lip Colour',
+    price: 18,
+    oldPrice: 24,
+    rating: 4.7,
+    reviewCount: 91,
+    size: '4 g',
+    bestSeller: true,
+    newArrival: true,
+    shortDescription:
+      'A buildable rose tint with a soft velvet finish that stays comfortable for hours.',
+    description:
+      'Velvet Lip Tint delivers a wearable wash of rose that can be sheered out for day or layered for evening. The cushioned formula keeps lips soft with shea and vitamin E, never chalky or drying.',
+    skinType: ['All skin types'],
+    concerns: [],
+    ingredients: ['Shea butter', 'Vitamin E', 'Jojoba esters', 'Rose wax', 'Squalane'],
+    benefits: [
+      'Comfortable, non-drying colour',
+      'Buildable from sheer to full',
+      'Blurs the look of lip texture',
+      'Pairs with the full Velora palette',
+    ],
+    howToUse: [
+      'Apply straight from the bullet or with a fingertip for a softer look.',
+      'Layer for a deeper shade.',
+      'Reapply as desired through the day.',
+    ],
+    images: [photo(1213558), photo(30408335), photo(4938498)],
+  },
+  {
+    ...base,
+    id: 'vel-lotion-07',
+    slug: 'botanical-body-lotion',
+    name: 'Botanical Body Lotion',
+    category: 'bodycare',
+    type: 'Body Lotion',
+    price: 26,
+    rating: 4.8,
+    reviewCount: 65,
+    size: '250 ml',
+    newArrival: true,
+    shortDescription:
+      'A light, fast-absorbing body lotion with a whisper of neroli and a soft, satin finish.',
+    description:
+      'Botanical Body Lotion sinks in quickly and keeps skin soft all day with shea, oat and aloe. The neroli-and-bergamot scent is subtle enough to layer under fragrance.',
+    skinType: ['All skin types'],
+    concerns: ['Dryness'],
+    ingredients: ['Shea butter', 'Oat milk', 'Aloe vera', 'Neroli extract', 'Glycerin'],
+    benefits: [
+      '24-hour everyday hydration',
+      'Absorbs instantly, no tackiness',
+      'Gentle enough for daily use',
+      'Subtle neroli and bergamot scent',
+    ],
+    howToUse: [
+      'Smooth over skin after showering while still damp.',
+      'Massage in upward strokes until absorbed.',
+      'Use daily for soft, even-looking skin.',
+    ],
+    images: [photo(5798000), photo(8015836), photo(15785661)],
+  },
+  {
+    ...base,
+    id: 'vel-mask-08',
+    slug: 'overnight-repair-mask',
+    name: 'Overnight Repair Mask',
+    category: 'skincare',
+    type: 'Mask',
+    price: 31,
+    rating: 4.9,
+    reviewCount: 112,
+    size: '60 ml',
+    bestSeller: true,
+    featured: true,
+    shortDescription:
+      'A leave-on sleeping mask that rebuilds comfort overnight for skin that looks rested by morning.',
+    description:
+      'Overnight Repair Mask is a rich but breathable balm that works while you sleep. Ceramides and peptides support the look of a plump, well-rested complexion — most people see softer, calmer skin after two nights.',
+    skinType: ['Normal', 'Dry', 'Combination'],
+    concerns: ['Dryness', 'Fine lines'],
+    ingredients: [
+      'Ceramide NP',
+      'Peptide complex',
+      'Squalane',
+      'Centella asiatica',
+      'Panthenol',
+    ],
+    benefits: [
+      'Deep overnight recovery',
+      'Smooths the look of dehydration lines',
+      'Calms the appearance of stressed skin',
+      'Non-comedogenic balm texture',
+    ],
+    howToUse: [
+      'Apply a generous layer as the last step of your evening routine.',
+      'Leave on overnight and rinse in the morning.',
+      'Use two to three nights a week, or as needed.',
+    ],
+    images: [photo(8015480), photo(8101532), photo(8100775)],
+  },
+  {
+    ...base,
+    id: 'vel-eye-09',
+    slug: 'renewing-eye-cream',
+    name: 'Renewing Eye Cream',
+    category: 'skincare',
+    type: 'Eye Care',
+    price: 29,
+    rating: 4.7,
+    reviewCount: 58,
+    size: '15 ml',
+    shortDescription:
+      'A light, cooling eye cream that softens the look of puffiness and fine dehydration lines.',
+    description:
+      'Renewing Eye Cream uses caffeine, peptides and squalane to brighten the look of tired eyes. The cool gel-cream texture absorbs fast and sits perfectly under concealer.',
+    skinType: ['All skin types'],
+    concerns: ['Fine lines', 'Dryness'],
+    ingredients: ['Caffeine', 'Peptides', 'Squalane', 'Cucumber extract', 'Niacinamide'],
+    benefits: [
+      'Visibly de-puffs the eye area',
+      'Softens fine dehydration lines',
+      'Sits well under makeup',
+      'Ophthalmologist tested',
+    ],
+    howToUse: [
+      'Tap a small amount along the orbital bone morning and night.',
+      'Pat, never rub, until absorbed.',
+      'Follow with SPF during the day.',
+    ],
+    images: [photo(8054400), photo(8101534), photo(8101532)],
+  },
+  {
+    ...base,
+    id: 'vel-scrub-10',
+    slug: 'rose-petal-exfoliating-scrub',
+    name: 'Rose Petal Exfoliating Scrub',
+    category: 'skincare',
+    type: 'Exfoliant',
+    price: 23,
+    rating: 4.8,
+    reviewCount: 77,
+    size: '75 ml',
+    newArrival: true,
+    shortDescription:
+      'A fine, cream-textured polish that lifts dullness and leaves skin glassy-smooth.',
+    description:
+      'Rose Petal Exfoliating Scrub uses ultra-fine rice powder and lactic acid to resurface without scratching. Skin looks refined and even, and everything you apply afterwards absorbs beautifully.',
+    skinType: ['Normal', 'Combination', 'Oily'],
+    concerns: ['Dullness', 'Uneven tone', 'Oiliness'],
+    ingredients: ['Rice powder', 'Lactic acid', 'Rosehip oil', 'Kaolin clay', 'Glycerin'],
+    benefits: [
+      'Polishes without scratching',
+      'Refines the look of texture',
+      'Brightens dull, tired skin',
+      'Weekly glow in two minutes',
+    ],
+    howToUse: [
+      'Massage onto damp skin in gentle circles.',
+      'Rinse thoroughly with lukewarm water.',
+      'Use two to three times a week.',
+    ],
+    images: [photo(5928033), photo(4841286), photo(4202382)],
+  },
+  {
+    ...base,
+    id: 'vel-hairoil-11',
+    slug: 'silk-repair-hair-oil',
+    name: 'Silk Repair Hair Oil',
+    category: 'haircare',
+    type: 'Hair Treatment',
+    price: 27,
+    oldPrice: 33,
+    rating: 4.8,
+    reviewCount: 103,
+    size: '50 ml',
+    bestSeller: true,
+    shortDescription:
+      'A weightless finishing oil that tames frizz and leaves hair with a soft, mirrored shine.',
+    description:
+      'Silk Repair Hair Oil blends camellia, argan and babassu oils to smooth the look of split ends without weighing hair down. A drop on dry hair revives shine; a mask on damp hair adds deep softness.',
+    skinType: ['All hair types'],
+    concerns: [],
+    ingredients: ['Camellia oil', 'Argan oil', 'Babassu oil', 'Vitamin E', 'Rice bran'],
+    benefits: [
+      'Smooths frizz and flyaways',
+      'Mirror-like shine without grease',
+      'Protects against heat styling look',
+      'Light enough for fine hair',
+    ],
+    howToUse: [
+      'Warm 1–2 drops and smooth through mid-lengths and ends.',
+      'Use on damp hair before styling, or dry hair to finish.',
+      'For a deeper treatment, leave on for 20 minutes before washing.',
+    ],
+    images: [photo(28994394), photo(7428095), photo(3993450)],
+  },
+  {
+    ...base,
+    id: 'vel-shampoo-12',
+    slug: 'botanical-nourishing-shampoo',
+    name: 'Botanical Nourishing Shampoo',
+    category: 'haircare',
+    type: 'Shampoo',
+    price: 24,
+    rating: 4.8,
+    reviewCount: 119,
+    size: '300 ml',
+    shortDescription:
+      'A sulphate-free shampoo that cleanses gently and leaves hair soft, bouncy and lightly scented.',
+    description:
+      'Botanical Nourishing Shampoo uses coconut-derived cleansers and oat protein for a kind, effective wash. Hair feels clean but never stripped, with a soft neroli-and-cedar trail.',
+    skinType: ['All hair types'],
+    concerns: [],
+    ingredients: ['Coconut-derived cleansers', 'Oat protein', 'Aloe vera', 'Neroli', 'Cedarwood'],
+    benefits: [
+      'Sulphate-free and colour-safe',
+      'Gentle on scalp and lengths',
+      'Adds softness and bounce',
+      'Light botanical scent',
+    ],
+    howToUse: [
+      'Massage into wet hair and scalp.',
+      'Rinse and repeat if needed.',
+      'Follow with Silk Repair Conditioner.',
+    ],
+    images: [photo(13573920), photo(3993450), photo(28994392)],
+  },
+  {
+    ...base,
+    id: 'vel-cond-13',
+    slug: 'silk-repair-conditioner',
+    name: 'Silk Repair Conditioner',
+    category: 'haircare',
+    type: 'Conditioner',
+    price: 24,
+    rating: 4.7,
+    reviewCount: 88,
+    size: '300 ml',
+    shortDescription:
+      'A rich, easy-rinse conditioner that detangles instantly and leaves hair silk-soft.',
+    description:
+      'Silk Repair Conditioner smooths the cuticle with shea and hydrolysed silk, making hair easier to detangle and softer to touch. Rinses clean without any waxy build-up.',
+    skinType: ['All hair types'],
+    concerns: [],
+    ingredients: ['Hydrolysed silk', 'Shea butter', 'Behentrimonium', 'Argan oil', 'Panthenol'],
+    benefits: [
+      'Instant detangling',
+      'Softens dry, tired lengths',
+      'Rinses clean, no build-up',
+      'Safe for coloured hair',
+    ],
+    howToUse: [
+      'Apply from mid-lengths to ends after shampooing.',
+      'Leave for two minutes, then rinse thoroughly.',
+      'Use weekly as a mask by leaving for ten minutes.',
+    ],
+    images: [photo(7428095), photo(13573920), photo(3993450)],
+  },
+  {
+    ...base,
+    id: 'vel-perfume-14',
+    slug: 'bloom-eau-de-parfum',
+    name: 'Bloom Eau de Parfum',
+    category: 'fragrance',
+    type: 'Fragrance',
+    price: 68,
+    oldPrice: 82,
+    rating: 4.9,
+    reviewCount: 156,
+    size: '50 ml',
+    bestSeller: true,
+    featured: true,
+    shortDescription:
+      'A soft floral eau de parfum of peony, jasmine and warm musk that wears close to the skin.',
+    description:
+      'Bloom opens with dewy peony and pear, settles into jasmine and iris, and dries down to clean musk and cedar. It is an everyday scent with an elegant, unhurried trail.',
+    skinType: ['All skin types'],
+    concerns: [],
+    ingredients: ['Peony accord', 'Jasmine absolute', 'Iris', 'White musk', 'Cedarwood'],
+    benefits: [
+      'Soft, long-wearing floral',
+      'Layerable with body care',
+      'Elegant but never heavy',
+      'Recyclable glass flacon',
+    ],
+    howToUse: [
+      'Spray onto pulse points from 15 cm away.',
+      'Avoid rubbing to preserve the top notes.',
+      'Layer over Botanical Body Lotion for longer wear.',
+    ],
+    images: [photo(32645088), photo(16266295), photo(264819)],
+  },
+  {
+    ...base,
+    id: 'vel-butter-15',
+    slug: 'whipped-body-butter',
+    name: 'Whipped Body Butter',
+    category: 'bodycare',
+    type: 'Body Moisturiser',
+    price: 25,
+    rating: 4.8,
+    reviewCount: 94,
+    size: '200 ml',
+    bestSeller: true,
+    shortDescription:
+      'A cloud-soft butter that melts on contact and leaves very dry skin comfortable and calm.',
+    description:
+      'Whipped Body Butter is a rich, airy blend of shea, cocoa and murumuru butters for skin that needs more than a lotion. It melts in quickly, soothes tightness and leaves a soft, satin finish.',
+    skinType: ['Dry', 'Very dry'],
+    concerns: ['Dryness'],
+    ingredients: ['Shea butter', 'Cocoa butter', 'Murumuru butter', 'Vitamin E', 'Vanilla'],
+    benefits: [
+      'Intense comfort for dry skin',
+      'Melts in without greasiness',
+      'Softens rough knees and elbows',
+      'Warm, subtle vanilla scent',
+    ],
+    howToUse: [
+      'Scoop a small amount and warm between palms.',
+      'Massage into dry areas after bathing.',
+      'Use daily, or nightly on very dry skin.',
+    ],
+    images: [photo(7020265), photo(5798000), photo(8015836)],
+  },
+  {
+    ...base,
+    id: 'vel-hand-16',
+    slug: 'calming-hand-cream',
+    name: 'Calming Hand Cream',
+    category: 'bodycare',
+    type: 'Hand Care',
+    price: 16,
+    rating: 4.6,
+    reviewCount: 61,
+    size: '75 ml',
+    newArrival: true,
+    shortDescription:
+      'A quick-absorbing hand cream that softens dry hands without leaving a slippery film.',
+    description:
+      'Calming Hand Cream is a light, fast-drying balm with shea and allantoin. It sinks in before you pick up your phone, leaving hands soft and lightly scented with neroli.',
+    skinType: ['All skin types'],
+    concerns: ['Dryness'],
+    ingredients: ['Shea butter', 'Allantoin', 'Glycerin', 'Neroli', 'Vitamin E'],
+    benefits: [
+      'Absorbs in seconds',
+      'Softens dry hands and cuticles',
+      'Fits neatly in a handbag',
+      'Non-greasy finish',
+    ],
+    howToUse: [
+      'Massage into hands and cuticles as often as needed.',
+      'Focus on knuckles and the base of the nails.',
+    ],
+    images: [photo(8015836), photo(8015480), photo(5798000)],
+  },
+  {
+    ...base,
+    id: 'vel-gold-17',
+    slug: 'golden-radiance-serum',
+    name: 'Golden Radiance Serum',
+    category: 'skincare',
+    type: 'Serum',
+    price: 38,
+    rating: 4.9,
+    reviewCount: 134,
+    size: '30 ml',
+    newArrival: true,
+    featured: true,
+    bestSeller: true,
+    shortDescription:
+      'A silky golden serum with niacinamide and botanical ferments for a smooth, luminous finish.',
+    description:
+      'Golden Radiance Serum combines niacinamide with fermented botanicals to refine the look of pores and even tone. The satin texture layers invisibly and gives skin an immediate, subtle glow.',
+    skinType: ['Normal', 'Combination', 'Oily'],
+    concerns: ['Uneven tone', 'Oiliness', 'Dullness'],
+    ingredients: ['Niacinamide (5%)', 'Botanical ferments', 'Zinc PCA', 'Hyaluronic acid', 'Goldenseal'],
+    benefits: [
+      'Refines the look of pores',
+      'Evens tone over time',
+      'Immediate soft-focus glow',
+      'Layers invisibly under makeup',
+    ],
+    howToUse: [
+      'Apply 3–4 drops morning and evening after toner.',
+      'Press into skin, then follow with moisturiser.',
+      'Introduce gradually if your skin is reactive.',
+    ],
+    images: [photo(15930069), photo(8100788), photo(8054400)],
+  },
+  {
+    ...base,
+    id: 'vel-lipstick-18',
+    slug: 'velvet-matte-lipstick',
+    name: 'Velvet Matte Lipstick',
+    category: 'makeup',
+    type: 'Lip Colour',
+    price: 21,
+    rating: 4.7,
+    reviewCount: 70,
+    size: '3.5 g',
+    newArrival: true,
+    shortDescription:
+      'A full-coverage matte lipstick with a cushiony feel and an elegant, blurred edge.',
+    description:
+      'Velvet Matte Lipstick delivers saturated colour in one stroke with a modern, soft-matte finish. Shea and jojoba keep lips comfortable, so the colour stays put without drying.',
+    skinType: ['All skin types'],
+    concerns: [],
+    ingredients: ['Shea butter', 'Jojoba oil', 'Rose wax', 'Vitamin E', 'Squalane'],
+    benefits: [
+      'One-stroke full coverage',
+      'Soft-matte, blurred finish',
+      'Comfortable for hours',
+      'Refillable metal bullet',
+    ],
+    howToUse: [
+      'Outline the lip, then fill in.',
+      'Blot once for a softer, diffused edge.',
+      'Layer over Velvet Lip Tint for extra wear.',
+    ],
+    images: [photo(30408335), photo(1213558), photo(1571585)],
+  },
+  {
+    ...base,
+    id: 'vel-bodyscrub-19',
+    slug: 'wildflower-body-scrub',
+    name: 'Wildflower Body Scrub',
+    category: 'bodycare',
+    type: 'Body Exfoliant',
+    price: 27,
+    rating: 4.8,
+    reviewCount: 52,
+    size: '250 ml',
+    newArrival: true,
+    shortDescription:
+      'A sugar-and-oil scrub that buffs away roughness and leaves skin glowing and soft.',
+    description:
+      'Wildflower Body Scrub is a dense blend of sugar crystals and nourishing oils that dissolves as you massage. Skin is left polished, comfortably moisturised and lightly scented with wildflowers.',
+    skinType: ['All skin types'],
+    concerns: ['Dryness', 'Dullness'],
+    ingredients: ['Cane sugar', 'Sunflower oil', 'Jojoba esters', 'Wildflower extract', 'Vitamin E'],
+    benefits: [
+      'Polishes rough, dry areas',
+      'Leaves skin soft and glowing',
+      'Oils melt into skin, not the drain',
+      'Perfect before self-tan or body oil',
+    ],
+    howToUse: [
+      'Massage onto damp skin in the shower.',
+      'Rinse with warm water — no soap needed.',
+      'Use twice weekly.',
+    ],
+    images: [photo(9748520), photo(7020265), photo(8015900)],
+  },
+  {
+    ...base,
+    id: 'vel-balm-20',
+    slug: 'cloud-soft-cleansing-balm',
+    name: 'Cloud Soft Cleansing Balm',
+    category: 'skincare',
+    type: 'Cleanser',
+    price: 30,
+    rating: 4.8,
+    reviewCount: 81,
+    size: '90 ml',
+    newArrival: true,
+    shortDescription:
+      'A sherbet balm that dissolves makeup and sunscreen, then rinses to a soft, clean finish.',
+    description:
+      'Cloud Soft Cleansing Balm melts from a sherbet to a silky oil the moment it touches skin. It lifts long-wear makeup and SPF completely, emulsifies with water and leaves no residue.',
+    skinType: ['All skin types', 'Sensitive'],
+    concerns: ['Sensitivity', 'Dryness'],
+    ingredients: ['Sunflower oil', 'Papaya enzyme', 'Shea butter', 'Chamomile', 'Vitamin E'],
+    benefits: [
+      'Removes long-wear makeup and SPF',
+      'Melts without tugging',
+      'Rinses residue-free',
+      'Gentle on reactive skin',
+    ],
+    howToUse: [
+      'Massage a scoop onto dry skin to dissolve makeup.',
+      'Add warm water to emulsify, then rinse.',
+      'Follow with Gentle Daily Cleanser for a double cleanse.',
+    ],
+    images: [photo(4841329), photo(4841286), photo(7795684)],
+  },
+  {
+    ...base,
+    id: 'vel-set-21',
+    slug: 'glow-ritual-skincare-set',
+    name: 'Glow Ritual Skincare Set',
+    category: 'skincare',
+    type: 'Set',
+    price: 96,
+    oldPrice: 120,
+    rating: 4.9,
+    reviewCount: 64,
+    size: '4-piece set',
+    sets: true,
+    featured: true,
+    shortDescription:
+      'The complete four-step routine — cleanser, toner, serum and cream — in one gift-ready box.',
+    description:
+      'The Glow Ritual Skincare Set brings the full Velora routine together at a saving: Gentle Daily Cleanser, Rose Glow Face Toner, Radiance Vitamin C Serum and Hydrating Face Cream, presented in a recycled linen box.',
+    skinType: ['All skin types'],
+    concerns: ['Dullness', 'Dryness'],
+    ingredients: ['See individual products'],
+    benefits: [
+      'Complete morning and evening routine',
+      'Save 20% against buying individually',
+      'Gift-ready recycled linen box',
+      'Ideal for gifting or starting out',
+    ],
+    howToUse: [
+      'Cleanse morning and evening.',
+      'Sweep toner over clean skin.',
+      'Press in serum, then seal with cream.',
+    ],
+    images: [photo(4841319), photo(3785147), photo(4841286)],
+  },
+];
+
+export const getProduct = (slug) => PRODUCTS.find((p) => p.slug === slug);
+
+export const getByCategory = (slug) =>
+  slug ? PRODUCTS.filter((p) => p.category === slug) : PRODUCTS;
+
+export const bestSellers = () => PRODUCTS.filter((p) => p.bestSeller);
+
+export const newArrivals = () => PRODUCTS.filter((p) => p.newArrival);
+
+export const featuredProducts = () => PRODUCTS.filter((p) => p.featured);
+
+export const featuredCollection = () => PRODUCTS.filter((p) => p.featuredCollection);
+
+export const relatedProducts = (product, count = 4) =>
+  PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id).slice(0, count);
+
+export const categoryName = (slug) =>
+  CATEGORIES.find((c) => c.slug === slug)?.name ?? slug;
+
+export const ALL_TYPES = [...new Set(PRODUCTS.map((p) => p.type))].sort();
+
+export const imageAt = (src, w = 900) => src.replace(/w=\d+/, `w=${w}`);

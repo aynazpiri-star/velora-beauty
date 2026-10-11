@@ -1,0 +1,33 @@
+# محیط توسعه اسنادباکس Base44 — اجرای اپ از روی سورس کلون‌شده (نه ایمیج پیش‌ساخته).
+# فقط برای پیش‌نمایش در سندباکس است و جایگزین استقرار واقعی نمی‌شود.
+services:
+  web:
+    # ایمیج زمان‌اجرای ساده؛ کد اپ از طریق bind mount خوانده می‌شود.
+    image: node:22-alpine
+    working_dir: /app
+    # وابستگی‌ها داخل کانتینر و روی volume نصب می‌شوند تا سورس روی هاست دست‌نخورده بماند.
+    command:
+      - sh
+      - -ec
+      - CI=true npm install --no-audit --no-fund && exec npm run dev
+    volumes:
+      - ./:/app
+      - web_node_modules:/app/node_modules
+    environment:
+      # این متغیرها را پلتفرم در اختیار اجرای compose قرار می‌دهد.
+      - BASE44_PREVIEW_MODE
+      - BASE44_SANDBOX_HOST_DOMAIN
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+    ports:
+      # درگاه ورودی کاربر همیشه ۳۰۰۰ است.
+      - "3000:3000"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 60s
+
+volumes:
+  web_node_modules:

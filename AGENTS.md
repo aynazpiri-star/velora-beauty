@@ -26,6 +26,21 @@ dependencies change, recreate the service. Equivalent without Docker (Node 22):
 npm install && npm run dev
 ```
 
+## Imagery
+
+Every photograph is **served from this repository** under `public/images/` — `products/`,
+`scenes/` and the two hero files — and referenced through `IMG` / `shot()` / `scene()` in
+`src/data/products.js`. Never point product or hero imagery back at a stock CDN: the storefront
+renders for visitors in Iran, where `images.pexels.com` is commonly unreachable, and hotlinked
+photos silently came back as empty boxes. Adding a photo means downloading it into
+`public/images/` (Pexels CDN URLs accept `?auto=compress&cs=tinysrgb&w=<width>`; use 1920 for the
+hero, 900–1200 elsewhere) and referencing the local path.
+
+The hero (`src/components/home/Hero.jsx`) is two photographs, not a gradient: `hero-ocean.jpg`
+as the full-bleed backdrop and `hero-bottle.jpg` (frosted teal bottle on wet stones, dark studio
+frame) layered in the foreground with the `.mask-bottle` mask plus `mix-blend-screen`, so there is
+no visible rectangle or halo. It stays visible on phones at ~62% column width.
+
 ## Sandbox-only configuration
 
 `vite.config.js` gates everything on `BASE44_PREVIEW_MODE === "1"`: it appends the sandbox host
@@ -50,7 +65,10 @@ hardcoded). The platform additionally supplies `__VITE_ADDITIONAL_SERVER_ALLOWED
   `32630380` (Kilian "Smoke for the Soul"), `11295337` ("bekheit"), `36459921` ("CHANEL"),
   `965989` ("D&G"), `32630388` ("Versace"), `32630374`/`32630382` ("Issey Miyake"/"Joop"),
   `1961786` ("L'Impératrice"), `15096784` ("FIRE"), `15426081` ("OPINION"), `30970926` ("zudio"),
-  `11517442` ("The Eagle"), `21008941` ("Marc Jacobs"). Verify before swapping imagery.
+  `11517442` ("The Eagle"), `21008941` ("Marc Jacobs"). Also rejected later: `31612011`/`31612014`
+  ("Gloria Perfume"), `16239693` ("AFFINESSE"), `12741172` ("Bespoke London"), `11705153` ("Zara"),
+  `30455875` ("Zielinski & Rozen"), `16722582` ("Ivy Dubai"), `9957575` ("Gucci Flora"),
+  `13875781` ("Fratelli Diamanti") and `11711813` ("honeymoon"). Verify before swapping imagery.
 - Google Fonts (Vazirmatn for Persian, Cormorant Garamond for the wordmark) load remotely; the
   Tailwind stacks fall back to system sans / Georgia when that request is blocked.
 - The reviews section renders **clearly labelled sample content** because no review system is

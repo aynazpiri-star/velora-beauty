@@ -84,6 +84,23 @@
     scrollbar-width: none;
   }
 
+  /* Wide, soft-edged mask for the hero bottle: dissolves its studio background
+     into the ocean photograph without leaving a visible rectangle or halo. */
+  .mask-bottle {
+    -webkit-mask-image: radial-gradient(
+      ellipse 56% 58% at 50% 52%,
+      #000 36%,
+      rgba(0, 0, 0, 0.55) 68%,
+      transparent 92%
+    );
+    mask-image: radial-gradient(
+      ellipse 56% 58% at 50% 52%,
+      #000 36%,
+      rgba(0, 0, 0, 0.55) 68%,
+      transparent 92%
+    );
+  }
+
   /* Softly fades a photo's rectangular edges so a product shot can sit inside
      a photographic scene (the hero bottle over the ocean). */
   .mask-soft-oval {

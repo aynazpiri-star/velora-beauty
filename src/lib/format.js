@@ -17,9 +17,5 @@ export const toman = (value) => `${toFaNumber(value)} تومان`
 /** 15 -> «۱۵٪» */
 export const toFaPercent = (value) => `${toFaDigits(value)}٪`
 
-/** Pexels CDN helper so image ids stay readable in the data files. */
-export const px = (id, w = 1000) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`
-
 /** Persian-aware slug/id helpers used by routing. */
 export const normalize = (value) => String(value ?? '').trim().toLowerCase()

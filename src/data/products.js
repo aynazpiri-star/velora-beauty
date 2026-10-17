@@ -1,27 +1,31 @@
-import { px } from '../lib/format'
-
 /**
  * The AURA PARFUMS catalogue.
  *
  * Everything the storefront renders comes from this file — adding or editing a
  * fragrance only requires touching this list (plus `CATEGORIES`).
  *
- * `image` / `gallery` point at the Pexels CDN (free-to-use photography). Every
- * photograph used here was reviewed for visible third-party branding and the
- * branded ones were rejected, so no competing label appears in the storefront.
+ * Photography ships with the site (`public/images/…`) instead of being hotlinked
+ * from a stock CDN: some networks block those hosts outright, which is why the
+ * storefront could render without a single photo. Every photograph used here was
+ * reviewed at ~600px for visible third-party branding and the branded ones were
+ * rejected, so no competing label appears in the storefront.
  */
 
+const shot = (name) => `/images/products/${name}.jpg`
+const scene = (name) => `/images/scenes/${name}.jpg`
+
 export const IMG = {
-  oceanHero: px(38250048, 1920),
-  oceanDusk: px(18995261, 1600),
-  oceanRocks: px(12103452, 1200),
-  seaTexture: px(40059075, 1200),
-  brandIntro: px(14490637, 1200),
-  boutique: px(264819, 1400),
-  discovery: px(34144825, 1100),
-  giftBoxes: px(17109151, 1200),
-  velvetBox: px(36482359, 900),
-  pouring: px(13767420, 1200),
+  oceanHero: '/images/hero-ocean.jpg',
+  heroBottle: '/images/hero-bottle.jpg',
+  oceanDusk: scene('ocean-dusk'),
+  oceanRocks: scene('ocean-rocks'),
+  seaTexture: scene('sea-texture'),
+  brandIntro: scene('brand-intro'),
+  boutique: scene('boutique'),
+  discovery: scene('discovery'),
+  giftBoxes: scene('gift-boxes'),
+  velvetBox: scene('velvet-box'),
+  pouring: scene('pouring'),
 }
 
 export const CATEGORIES = [
@@ -29,37 +33,37 @@ export const CATEGORIES = [
     slug: 'women',
     title: 'عطرهای زنانه',
     subtitle: 'ظرافت، گل‌ها و ماندگاری',
-    image: px(16085723, 700),
+    image: shot('rose-eternelle'),
   },
   {
     slug: 'men',
     title: 'عطرهای مردانه',
     subtitle: 'قدرت، چوب و اعتماد',
-    image: px(14490634, 700),
+    image: shot('bleu-marine'),
   },
   {
     slug: 'unisex',
     title: 'عطرهای یونیسکس',
     subtitle: 'برای هر دو سلیقه',
-    image: px(26585419, 700),
+    image: shot('iris-celeste'),
   },
   {
     slug: 'daily',
     title: 'عطرهای روزانه',
     subtitle: 'سبک، خوش‌نشین و بی‌ادعا',
-    image: px(11711813, 700),
+    image: shot('citrus-noir'),
   },
   {
     slug: 'luxury',
     title: 'عطرهای خاص و لوکس',
     subtitle: 'کالکشن ممتاز AURA',
-    image: px(20282244, 700),
+    image: shot('oud-royal'),
   },
   {
     slug: 'gift',
     title: 'ست‌های هدیه',
     subtitle: 'هدیه‌ای به‌یادماندنی',
-    image: px(17109151, 700),
+    image: scene('gift-boxes'),
   },
 ]
 
@@ -92,8 +96,8 @@ export const products = [
       'اسکیوبا با نت‌های آبی و خنک خود، تجربه‌ای از شیرجه زدن در آب‌های عمیق را با خود می‌آورد. طراوت مرکبات بالای رایحه با پایه‌ای از مشک سفید ترکیب شده تا ماندگاری و رنگی مردانه و مدرن بسازد.',
     price: 3490000,
     oldPrice: 4100000,
-    image: px(7814958, 900),
-    gallery: [px(7814958, 1000), px(40059075, 1000), px(26585419, 1000)],
+    image: shot('scuba-blue'),
+    gallery: [...['scuba-blue', 'bleu-marine'].map(shot), scene('sea-texture')],
     featured: true,
   },
   {
@@ -113,8 +117,8 @@ export const products = [
     description:
       'رز دمشقی در قلب این رایحه می‌تپد و با پیونی و مشک، لطافتی مخملی می‌سازد. رز اترنل برای لحظه‌هایی است که می‌خواهید حضوری آرام اما فراموش‌نشدنی داشته باشید.',
     price: 2890000,
-    image: px(16085723, 900),
-    gallery: [px(16085723, 1000), px(12402362, 1000), px(36389336, 1000)],
+    image: shot('rose-eternelle'),
+    gallery: [...['rose-eternelle', 'lumiere-blanche'].map(shot), scene('boutique')],
     featured: true,
   },
   {
@@ -134,8 +138,8 @@ export const products = [
     description:
       'چوب صندل با گرمایی طبیعی و پوششی نرم، ستون این رایحه است. وانیل و عنبر عمق آن را کامل می‌کنند تا سانتال دوره، همراهی آرام برای روزهای طولانی باشد.',
     price: 3150000,
-    image: px(20282244, 900),
-    gallery: [px(20282244, 1000), px(264819, 1000), px(11711813, 1000)],
+    image: shot('santal-dore'),
+    gallery: [...['santal-dore', 'ambre-solaire'].map(shot), scene('boutique')],
     featured: true,
   },
   {
@@ -155,8 +159,8 @@ export const products = [
     description:
       'شروعی درخشان از لیمو و نارنگی که به سرعت جای خود را به وتیور خشک و شیک می‌دهد. سیتروس نوآر عطری است برای شروع پرانرژی روز.',
     price: 2650000,
-    image: px(26585419, 900),
-    gallery: [px(26585419, 1000), px(11711811, 1000), px(11711813, 1000)],
+    image: shot('citrus-noir'),
+    gallery: [...['citrus-noir', 'neroli-blanc'].map(shot), scene('sea-texture')],
     featured: true,
   },
   {
@@ -176,8 +180,8 @@ export const products = [
     description:
       'عود، چرم و زعفران در عود رویال به هم می‌رسند تا رایحه‌ای اشرافی و پرحضور بسازند. انتخابی برای شب‌هایی که می‌خواهید به‌یاد بمانید.',
     price: 4890000,
-    image: px(15574229, 900),
-    gallery: [px(15574229, 1000), px(20282244, 1000), px(264819, 1000)],
+    image: shot('oud-royal'),
+    gallery: [...['oud-royal', 'musc-de-lune'].map(shot), scene('ocean-dusk')],
     featured: true,
   },
   {
@@ -197,8 +201,8 @@ export const products = [
     description:
       'لومیر بلانش با مشک سفید و یاسمین، رایحه‌ای تمیز و نورانی می‌سازد؛ مثل ملافه‌های تازه در صبحی روشن. رایحه‌ای بی‌زمان که همه‌جا می‌نشیند.',
     price: 2750000,
-    image: px(15574229, 900),
-    gallery: [px(15574229, 1000), px(16266295, 1000), px(11711811, 1000)],
+    image: shot('lumiere-blanche'),
+    gallery: [...['lumiere-blanche', 'rose-eternelle'].map(shot), scene('boutique')],
     featured: true,
   },
   {
@@ -218,8 +222,8 @@ export const products = [
     description:
       'خنکی نعناع آبی با اسطوخودوس و کهربا به تعادلی مدرن می‌رسد. بلو مارین رایحه‌ای است برای شروع‌های پرانرژی و روزهای گرم.',
     price: 3050000,
-    image: px(10688062, 900),
-    gallery: [px(10688062, 1000), px(40059075, 1000), px(4735908, 1000)],
+    image: shot('bleu-marine'),
+    gallery: [...['bleu-marine', 'scuba-blue'].map(shot), scene('ocean-rocks')],
     featured: true,
   },
   {
@@ -239,8 +243,8 @@ export const products = [
     description:
       'آیریس، رایحه‌ای پودری و اشرافی است که با بنفشه نرم می‌شود. آیریس سلست برای سلیقه‌های مینیمال و دوست‌داران رایحه‌های پودری ساخته شده.',
     price: 3390000,
-    image: px(36389336, 900),
-    gallery: [px(36389336, 1000), px(7814958, 1000), px(12402362, 1000)],
+    image: shot('iris-celeste'),
+    gallery: [...['iris-celeste', 'musc-de-lune'].map(shot), scene('boutique')],
   },
   {
     id: 'vanille-ambree',
@@ -259,8 +263,8 @@ export const products = [
     description:
       'وانیل ماداگاسکار با عنبر و تونکا، رایحه‌ای گرم و دلچسب می‌سازد. وانیل آمبره برای عصرهای سرد و لحظه‌های آرام است.',
     price: 3290000,
-    image: px(11711813, 900),
-    gallery: [px(11711813, 1000), px(20282244, 1000), px(264819, 1000)],
+    image: shot('vanille-ambree'),
+    gallery: [...['vanille-ambree', 'ambre-solaire'].map(shot), scene('brand-intro')],
     featured: true,
   },
   {
@@ -280,8 +284,8 @@ export const products = [
     description:
       'نرولی، شکوفه نارنجی که در آب مقطر خیس خورده؛ روشن، تمیز و شاداب. نرولی بلان انتخاب بی‌خطر و دلنشینی برای هر روز است.',
     price: 2950000,
-    image: px(16266295, 900),
-    gallery: [px(16266295, 1000), px(11711811, 1000), px(11711813, 1000)],
+    image: shot('neroli-blanc'),
+    gallery: [...['neroli-blanc', 'citrus-noir'].map(shot), scene('sea-texture')],
   },
   {
     id: 'bois-de-santal',
@@ -300,8 +304,8 @@ export const products = [
     description:
       'ترکیبی خشک و نجیب از سدر و چوب صندل که با مشک نرم می‌شود. بوآ دو سانتال رایحه‌ای چوبی است که در محل کار هم آزاردهنده نیست.',
     price: 2780000,
-    image: px(32645088, 900),
-    gallery: [px(32645088, 1000), px(20282244, 1000), px(264819, 1000)],
+    image: shot('bois-de-santal'),
+    gallery: [...['bois-de-santal', 'santal-dore'].map(shot), scene('ocean-rocks')],
   },
   {
     id: 'musc-de-lune',
@@ -320,8 +324,8 @@ export const products = [
     description:
       'موسک دو لون رایحه‌ای صمیمی و مخملی است؛ مشکی که به پوست می‌چسبد و در طول شب پایدار می‌ماند. برای لحظه‌های خصوصی و شب‌های خاص.',
     price: 2680000,
-    image: px(12402362, 900),
-    gallery: [px(12402362, 1000), px(7814958, 1000), px(16085723, 1000)],
+    image: shot('musc-de-lune'),
+    gallery: [...['musc-de-lune', 'oud-royal'].map(shot), scene('ocean-dusk')],
   },
   {
     id: 'fleur-de-sel',
@@ -340,8 +344,8 @@ export const products = [
     description:
       'فلور دو سل، بوی هوا در ساحل در صبح زود است؛ شور، تازه و بی‌پیرایه. رایحه‌ای روشن که برای روزهای گرم ساخته شده.',
     price: 2890000,
-    image: px(13875781, 900),
-    gallery: [px(13875781, 1000), px(40059075, 1000), px(16266295, 1000)],
+    image: shot('fleur-de-sel'),
+    gallery: [...['fleur-de-sel', 'citrus-noir'].map(shot), scene('sea-texture')],
   },
   {
     id: 'ambre-solaire',
@@ -360,8 +364,8 @@ export const products = [
     description:
       'پرتقال خونی در ابتدا می‌درخشد و سپس عنبر و بنزوئین گرمای خود را باز می‌کنند. آمبر سولر، آفتاب در قالب یک رایحه است.',
     price: 3190000,
-    image: px(4735908, 900),
-    gallery: [px(4735908, 1000), px(20282244, 1000), px(11711813, 1000)],
+    image: shot('ambre-solaire'),
+    gallery: [...['ambre-solaire', 'vanille-ambree'].map(shot), scene('brand-intro')],
   },
 ]
 

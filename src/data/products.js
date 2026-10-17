@@ -1,0 +1,397 @@
+import { px } from '../lib/format'
+
+/**
+ * The AURA PARFUMS catalogue.
+ *
+ * Everything the storefront renders comes from this file — adding or editing a
+ * fragrance only requires touching this list (plus `CATEGORIES`).
+ *
+ * `image` / `gallery` point at the Pexels CDN (free-to-use photography). Every
+ * photograph used here was reviewed for visible third-party branding and the
+ * branded ones were rejected, so no competing label appears in the storefront.
+ */
+
+export const IMG = {
+  oceanHero: px(38250048, 1920),
+  oceanDusk: px(18995261, 1600),
+  oceanRocks: px(12103452, 1200),
+  seaTexture: px(40059075, 1200),
+  brandIntro: px(14490637, 1200),
+  boutique: px(264819, 1400),
+  discovery: px(34144825, 1100),
+  giftBoxes: px(17109151, 1200),
+  velvetBox: px(36482359, 900),
+  pouring: px(13767420, 1200),
+}
+
+export const CATEGORIES = [
+  {
+    slug: 'women',
+    title: 'عطرهای زنانه',
+    subtitle: 'ظرافت، گل‌ها و ماندگاری',
+    image: px(16085723, 700),
+  },
+  {
+    slug: 'men',
+    title: 'عطرهای مردانه',
+    subtitle: 'قدرت، چوب و اعتماد',
+    image: px(14490634, 700),
+  },
+  {
+    slug: 'unisex',
+    title: 'عطرهای یونیسکس',
+    subtitle: 'برای هر دو سلیقه',
+    image: px(26585419, 700),
+  },
+  {
+    slug: 'daily',
+    title: 'عطرهای روزانه',
+    subtitle: 'سبک، خوش‌نشین و بی‌ادعا',
+    image: px(11711813, 700),
+  },
+  {
+    slug: 'luxury',
+    title: 'عطرهای خاص و لوکس',
+    subtitle: 'کالکشن ممتاز AURA',
+    image: px(20282244, 700),
+  },
+  {
+    slug: 'gift',
+    title: 'ست‌های هدیه',
+    subtitle: 'هدیه‌ای به‌یادماندنی',
+    image: px(17109151, 700),
+  },
+]
+
+/** `family` drives the quiz + the “خانواده رایحه” badge. */
+export const FAMILY_LABELS = {
+  aquatic: 'آبی و دریایی',
+  floral: 'گلی',
+  woody: 'چوبی',
+  sweet: 'شیرین و شرقی',
+  citrus: 'مرکباتی',
+  musk: 'مشکی و پودری',
+}
+
+export const products = [
+  {
+    id: 'scuba-blue',
+    slug: 'scuba-blue',
+    name: 'آبی اسکیوبا',
+    nameEn: 'Scuba Blue',
+    family: 'aquatic',
+    gender: 'men',
+    tags: ['daily', 'luxury', 'bestseller'],
+    temperature: 'cool',
+    occasion: ['daily', 'special'],
+    notes: ['نت آبی', 'برگاموت', 'مشک سفید'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'رایحه‌ای دریایی، خنک و پرانرژی',
+    description:
+      'اسکیوبا با نت‌های آبی و خنک خود، تجربه‌ای از شیرجه زدن در آب‌های عمیق را با خود می‌آورد. طراوت مرکبات بالای رایحه با پایه‌ای از مشک سفید ترکیب شده تا ماندگاری و رنگی مردانه و مدرن بسازد.',
+    price: 3490000,
+    oldPrice: 4100000,
+    image: px(7814958, 900),
+    gallery: [px(7814958, 1000), px(40059075, 1000), px(26585419, 1000)],
+    featured: true,
+  },
+  {
+    id: 'rose-eternelle',
+    slug: 'rose-eternelle',
+    name: 'رز اترنل',
+    nameEn: 'Rose Éternelle',
+    family: 'floral',
+    gender: 'women',
+    tags: ['luxury', 'bestseller'],
+    temperature: 'warm',
+    occasion: ['special'],
+    notes: ['رز دمشقی', 'پیونی', 'مشک'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'ترکیبی لطیف از گل رز و مشک',
+    description:
+      'رز دمشقی در قلب این رایحه می‌تپد و با پیونی و مشک، لطافتی مخملی می‌سازد. رز اترنل برای لحظه‌هایی است که می‌خواهید حضوری آرام اما فراموش‌نشدنی داشته باشید.',
+    price: 2890000,
+    image: px(16085723, 900),
+    gallery: [px(16085723, 1000), px(12402362, 1000), px(36389336, 1000)],
+    featured: true,
+  },
+  {
+    id: 'santal-dore',
+    slug: 'santal-dore',
+    name: 'سانتال دوره',
+    nameEn: 'Santal Doré',
+    family: 'woody',
+    gender: 'unisex',
+    tags: ['daily', 'luxury', 'bestseller'],
+    temperature: 'warm',
+    occasion: ['daily', 'special'],
+    notes: ['چوب صندل', 'وانیل', 'عنبر'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'گرمای چوب صندل با حسی عمیق و آرام',
+    description:
+      'چوب صندل با گرمایی طبیعی و پوششی نرم، ستون این رایحه است. وانیل و عنبر عمق آن را کامل می‌کنند تا سانتال دوره، همراهی آرام برای روزهای طولانی باشد.',
+    price: 3150000,
+    image: px(20282244, 900),
+    gallery: [px(20282244, 1000), px(264819, 1000), px(11711813, 1000)],
+    featured: true,
+  },
+  {
+    id: 'citrus-noir',
+    slug: 'citrus-noir',
+    name: 'سیتروس نوآر',
+    nameEn: 'Citrus Noir',
+    family: 'citrus',
+    gender: 'men',
+    tags: ['daily'],
+    temperature: 'cool',
+    occasion: ['daily'],
+    notes: ['لیمو', 'نارنگی', 'وتیور'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوتویلت',
+    tagline: 'طراوت مرکبات با پایانی شیک و مدرن',
+    description:
+      'شروعی درخشان از لیمو و نارنگی که به سرعت جای خود را به وتیور خشک و شیک می‌دهد. سیتروس نوآر عطری است برای شروع پرانرژی روز.',
+    price: 2650000,
+    image: px(26585419, 900),
+    gallery: [px(26585419, 1000), px(11711811, 1000), px(11711813, 1000)],
+    featured: true,
+  },
+  {
+    id: 'oud-royal',
+    slug: 'oud-royal',
+    name: 'عود رویال',
+    nameEn: 'Oud Royal',
+    family: 'sweet',
+    gender: 'unisex',
+    tags: ['luxury', 'bestseller'],
+    temperature: 'warm',
+    occasion: ['special'],
+    notes: ['عود', 'زعفران', 'چرم'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'اکستره دوپارفوم',
+    tagline: 'رایحه‌ای عمیق، گرم و باشکوه',
+    description:
+      'عود، چرم و زعفران در عود رویال به هم می‌رسند تا رایحه‌ای اشرافی و پرحضور بسازند. انتخابی برای شب‌هایی که می‌خواهید به‌یاد بمانید.',
+    price: 4890000,
+    image: px(15574229, 900),
+    gallery: [px(15574229, 1000), px(20282244, 1000), px(264819, 1000)],
+    featured: true,
+  },
+  {
+    id: 'lumiere-blanche',
+    slug: 'lumiere-blanche',
+    name: 'لومیر بلانش',
+    nameEn: 'Lumière Blanche',
+    family: 'musk',
+    gender: 'women',
+    tags: ['daily', 'bestseller'],
+    temperature: 'warm',
+    occasion: ['daily', 'special'],
+    notes: ['مشک سفید', 'یاسمین', 'آمبرت'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'رایحه‌ای لطیف، روشن و دلنشین',
+    description:
+      'لومیر بلانش با مشک سفید و یاسمین، رایحه‌ای تمیز و نورانی می‌سازد؛ مثل ملافه‌های تازه در صبحی روشن. رایحه‌ای بی‌زمان که همه‌جا می‌نشیند.',
+    price: 2750000,
+    image: px(15574229, 900),
+    gallery: [px(15574229, 1000), px(16266295, 1000), px(11711811, 1000)],
+    featured: true,
+  },
+  {
+    id: 'bleu-marine',
+    slug: 'bleu-marine',
+    name: 'بلو مارین',
+    nameEn: 'Bleu Marine',
+    family: 'aquatic',
+    gender: 'men',
+    tags: ['daily', 'gift'],
+    temperature: 'cool',
+    occasion: ['daily'],
+    notes: ['نعناع آبی', 'اسطوخودوس', 'کهربا'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوتویلت',
+    tagline: 'اقیانوس خروشان در قابی مدرن',
+    description:
+      'خنکی نعناع آبی با اسطوخودوس و کهربا به تعادلی مدرن می‌رسد. بلو مارین رایحه‌ای است برای شروع‌های پرانرژی و روزهای گرم.',
+    price: 3050000,
+    image: px(10688062, 900),
+    gallery: [px(10688062, 1000), px(40059075, 1000), px(4735908, 1000)],
+    featured: true,
+  },
+  {
+    id: 'iris-celeste',
+    slug: 'iris-celeste',
+    name: 'آیریس سلست',
+    nameEn: 'Iris Céleste',
+    family: 'floral',
+    gender: 'women',
+    tags: ['luxury'],
+    temperature: 'cool',
+    occasion: ['special'],
+    notes: ['آیریس', 'بنفشه', 'مشک'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'ظریف و پودری با نَفَسی از آسمان',
+    description:
+      'آیریس، رایحه‌ای پودری و اشرافی است که با بنفشه نرم می‌شود. آیریس سلست برای سلیقه‌های مینیمال و دوست‌داران رایحه‌های پودری ساخته شده.',
+    price: 3390000,
+    image: px(36389336, 900),
+    gallery: [px(36389336, 1000), px(7814958, 1000), px(12402362, 1000)],
+  },
+  {
+    id: 'vanille-ambree',
+    slug: 'vanille-ambree',
+    name: 'وانیل آمبره',
+    nameEn: 'Vanille Ambrée',
+    family: 'sweet',
+    gender: 'unisex',
+    tags: ['daily', 'gift'],
+    temperature: 'warm',
+    occasion: ['daily', 'special'],
+    notes: ['وانیل', 'عنبر', 'تونکا'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'شیرینی گرم وانیل با گرمای عنبر',
+    description:
+      'وانیل ماداگاسکار با عنبر و تونکا، رایحه‌ای گرم و دلچسب می‌سازد. وانیل آمبره برای عصرهای سرد و لحظه‌های آرام است.',
+    price: 3290000,
+    image: px(11711813, 900),
+    gallery: [px(11711813, 1000), px(20282244, 1000), px(264819, 1000)],
+    featured: true,
+  },
+  {
+    id: 'neroli-blanc',
+    slug: 'neroli-blanc',
+    name: 'نرولی بلان',
+    nameEn: 'Néroli Blanc',
+    family: 'citrus',
+    gender: 'unisex',
+    tags: ['daily', 'gift'],
+    temperature: 'cool',
+    occasion: ['daily'],
+    notes: ['نرولی', 'برگاموت', 'مشک'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوتویلت',
+    tagline: 'شکوفه نارنج با تازگی سفید',
+    description:
+      'نرولی، شکوفه نارنجی که در آب مقطر خیس خورده؛ روشن، تمیز و شاداب. نرولی بلان انتخاب بی‌خطر و دلنشینی برای هر روز است.',
+    price: 2950000,
+    image: px(16266295, 900),
+    gallery: [px(16266295, 1000), px(11711811, 1000), px(11711813, 1000)],
+  },
+  {
+    id: 'bois-de-santal',
+    slug: 'bois-de-santal',
+    name: 'بوآ دو سانتال',
+    nameEn: 'Bois de Santal',
+    family: 'woody',
+    gender: 'men',
+    tags: ['daily', 'gift'],
+    temperature: 'warm',
+    occasion: ['daily'],
+    notes: ['چوب صندل', 'سدر', 'مشک'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'چوبی گرم و آرام برای هر روز',
+    description:
+      'ترکیبی خشک و نجیب از سدر و چوب صندل که با مشک نرم می‌شود. بوآ دو سانتال رایحه‌ای چوبی است که در محل کار هم آزاردهنده نیست.',
+    price: 2780000,
+    image: px(32645088, 900),
+    gallery: [px(32645088, 1000), px(20282244, 1000), px(264819, 1000)],
+  },
+  {
+    id: 'musc-de-lune',
+    slug: 'musc-de-lune',
+    name: 'موسک دو لون',
+    nameEn: 'Musc de Lune',
+    family: 'musk',
+    gender: 'women',
+    tags: ['luxury', 'gift'],
+    temperature: 'warm',
+    occasion: ['special'],
+    notes: ['مشک', 'آمبروکسان', 'پیونی'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'مشکی مخملی و اسرارآمیز',
+    description:
+      'موسک دو لون رایحه‌ای صمیمی و مخملی است؛ مشکی که به پوست می‌چسبد و در طول شب پایدار می‌ماند. برای لحظه‌های خصوصی و شب‌های خاص.',
+    price: 2680000,
+    image: px(12402362, 900),
+    gallery: [px(12402362, 1000), px(7814958, 1000), px(16085723, 1000)],
+  },
+  {
+    id: 'fleur-de-sel',
+    slug: 'fleur-de-sel',
+    name: 'فلور دو سل',
+    nameEn: 'Fleur de Sel',
+    family: 'aquatic',
+    gender: 'unisex',
+    tags: ['daily', 'gift'],
+    temperature: 'cool',
+    occasion: ['daily'],
+    notes: ['نت آبی', 'نمک دریا', 'مشک'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوتویلت',
+    tagline: 'نمک دریا، هوا و روشنی',
+    description:
+      'فلور دو سل، بوی هوا در ساحل در صبح زود است؛ شور، تازه و بی‌پیرایه. رایحه‌ای روشن که برای روزهای گرم ساخته شده.',
+    price: 2890000,
+    image: px(13875781, 900),
+    gallery: [px(13875781, 1000), px(40059075, 1000), px(16266295, 1000)],
+  },
+  {
+    id: 'ambre-solaire',
+    slug: 'ambre-solaire',
+    name: 'آمبر سولر',
+    nameEn: 'Ambre Solaire',
+    family: 'sweet',
+    gender: 'men',
+    tags: ['luxury', 'gift'],
+    temperature: 'warm',
+    occasion: ['special', 'daily'],
+    notes: ['پرتقال خونی', 'عنبر', 'بنزوئین'],
+    size: '۱۰۰ میلی‌لیتر',
+    concentration: 'ادوپرفیوم',
+    tagline: 'طلوعی از عنبر و مرکبات',
+    description:
+      'پرتقال خونی در ابتدا می‌درخشد و سپس عنبر و بنزوئین گرمای خود را باز می‌کنند. آمبر سولر، آفتاب در قالب یک رایحه است.',
+    price: 3190000,
+    image: px(4735908, 900),
+    gallery: [px(4735908, 1000), px(20282244, 1000), px(11711813, 1000)],
+  },
+]
+
+export const getProduct = (slug) => products.find((p) => p.slug === slug)
+
+export const collectionProducts = (slug) => {
+  switch (slug) {
+    case 'women':
+      return products.filter((p) => p.gender === 'women')
+    case 'men':
+      return products.filter((p) => p.gender === 'men')
+    case 'unisex':
+      return products.filter((p) => p.gender === 'unisex')
+    case 'daily':
+    case 'luxury':
+    case 'gift':
+      return products.filter((p) => p.tags.includes(slug))
+    case 'all':
+      return products
+    default:
+      return []
+  }
+}
+
+export const relatedProducts = (product, count = 4) =>
+  products
+    .filter((p) => p.id !== product.id)
+    .sort((a, b) => {
+      const score = (x) =>
+        (x.family === product.family ? 2 : 0) + (x.gender === product.gender ? 1 : 0)
+      return score(b) - score(a)
+    })
+    .slice(0, count)

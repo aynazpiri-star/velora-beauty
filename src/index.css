@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+    font-feature-settings: 'ss01' on;
+    overflow-x: hidden;
+  }
+
+  /* Persian numerals read better with tabular spacing in prices/quantities. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    @apply bg-turquoise text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-turquoise ring-offset-2 ring-offset-ivory;
+  }
+
+  /* A slim, brand-coloured scrollbar. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1e9dd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #0a5573;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #063b55;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .brand-wordmark {
+    @apply font-display uppercase;
+    letter-spacing: 0.34em;
+  }
+
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-wide2;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-1 h-px w-0 bg-current transition-all duration-300;
+    inset-inline-start: 0;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  .hairline {
+    @apply border-ivory-line;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Softly fades a photo's rectangular edges so a product shot can sit inside
+     a photographic scene (the hero bottle over the ocean). */
+  .mask-soft-oval {
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, #000 52%, transparent 82%);
+    mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, #000 52%, transparent 82%);
+  }
+
+  .text-shadow-hero {
+    text-shadow: 0 2px 30px rgba(2, 30, 44, 0.55);
+  }
+
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.5) 0.5px, transparent 0.5px);
+    background-size: 3px 3px;
+  }
+}
+
+/* Reveal-on-scroll --------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-floaty,
+  .animate-scrollHint,
+  .animate-shimmer {
+    animation: none !important;
+  }
+}

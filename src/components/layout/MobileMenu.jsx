@@ -24,7 +24,9 @@ export default function MobileMenu() {
   return (
     <div
       className={classNames(
-        'fixed inset-0 z-[70] lg:hidden',
+        // Available at every width: the header keeps only the three zones
+        // (menu · brand · utilities), so this drawer carries the navigation.
+        'fixed inset-0 z-[70]',
         menuOpen ? 'pointer-events-auto' : 'pointer-events-none',
       )}
       aria-hidden={!menuOpen}

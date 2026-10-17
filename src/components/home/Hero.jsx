@@ -2,71 +2,78 @@ import { ShoppingBag } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../../context/StoreContext'
 import { IMG, getProduct } from '../../data/products'
-import { toFaNumber } from '../../lib/format'
+import { toman } from '../../lib/format'
 
 /**
- * Cinematic hero — a real ocean photograph (waves breaking over coastal rocks in
- * sunlight) with the Scuba Blue bottle standing in the foreground.
+ * Cinematic ocean campaign hero.
  *
- * Both layers are repo-hosted photographs (`public/images/…`), never gradients.
- * The bottle shot is a dark studio frame of a frosted teal bottle on wet stones,
- * so it is soft-masked and screen-blended into the surf instead of sitting on a
- * visible rectangle.
+ * One repo-hosted photograph carries the whole scene — turquoise surf breaking
+ * over dark coastal rocks, the sapphire Scuba bottle standing centre frame with
+ * its gold collar and faceted cap, and the oversized AURA wordmark behind it
+ * (see AGENTS.md for how the asset is produced). The Persian campaign copy is
+ * real HTML laid over the negative space on the start (right) side, so it stays
+ * crisp and selectable at every width.
+ *
+ * Below 1280px a stacked arrangement replaces the overlay: the photograph keeps
+ * the upper band and the copy sits on the ocean-ink panel underneath. The
+ * overlaid copy is confined to the start-side column, which only clears the
+ * centre-framed bottle from 1280px up.
  */
 export default function Hero() {
   const { addToCart } = useStore()
   const hero = getProduct('scuba-blue')
 
   return (
-    <section className="relative isolate flex min-h-[92vh] flex-col justify-center overflow-hidden bg-ocean-ink pb-14 pt-24 sm:pb-24 sm:pt-32 lg:min-h-screen">
-      {/* 1. Ocean, waves and coastal rocks */}
-      <img
-        src={IMG.oceanHero}
-        alt="دریای فیروزه‌ای و امواج روی صخره‌های ساحلی در نور خورشید"
-        className="absolute inset-0 -z-20 h-full w-full scale-[1.05] object-cover object-[62%_42%]"
-      />
+    <section className="relative isolate overflow-hidden bg-ocean-ink xl:min-h-screen">
+      {/* Photograph band */}
+      <div className="relative h-[56svh] min-h-[330px] w-full overflow-hidden sm:h-[62svh] lg:h-[64svh] xl:absolute xl:inset-0 xl:h-full xl:min-h-0">
+        <img
+          src={IMG.scubaHero}
+          alt="عطر آبی اسکیوبا روی صخره‌های ساحلی زیر نور روز، با امواج فیروزه‌ای اقیانوس در پس‌زمینه"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_34%] sm:object-[50%_42%] xl:object-[50%_52%]"
+        />
 
-      {/* 2. Cinematic grading: keep the sea turquoise, protect the type */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-ocean-ink/70 via-ocean/20 to-ocean-ink/90"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(120%_90%_at_70%_22%,rgba(18,168,196,0.22)_0%,transparent_45%,rgba(2,30,44,0.78)_100%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-ocean-ink/80 to-transparent"
-      />
-      <div aria-hidden="true" className="grain absolute inset-0 -z-10" />
+        {/* Grading: keeps the daylight photograph readable under the type
+            without washing the surf out. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ocean-ink/75 to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 hidden bg-gradient-to-l from-ocean-ink/85 via-ocean-ink/25 to-transparent xl:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ocean-ink via-ocean-ink/60 to-transparent"
+        />
+        <div aria-hidden="true" className="grain absolute inset-0" />
+      </div>
 
-      {/* 3. Campaign content */}
-      <div className="container-x relative z-10 grid w-full items-center gap-6 sm:gap-10 lg:grid-cols-12 lg:gap-8">
-        <div className="max-w-xl lg:col-span-6 xl:col-span-5">
-          <p className="eyebrow mb-5 flex items-center gap-3 text-champagne text-shadow-hero">
+      {/* Campaign copy */}
+      <div className="container-x relative xl:flex xl:min-h-screen xl:items-center">
+        <div className="me-auto w-full max-w-[520px] pb-16 pt-9 xl:max-w-[440px] xl:py-32">
+          <p className="eyebrow flex items-center gap-3 text-champagne text-shadow-hero">
             <span className="h-px w-10 bg-champagne/70" />
             کالکشن جدید AURA
           </p>
 
-          <h1 className="font-display text-[34px] leading-[1.15] text-white text-shadow-hero sm:text-[60px] lg:text-[70px]">
+          <h1 className="mt-5 font-display text-[34px] leading-[1.15] text-white text-shadow-hero sm:text-[52px] lg:text-[54px] 2xl:text-[62px]">
             رایحه‌ای به وسعت
-            <span className="mt-2 block bg-gradient-to-l from-turquoise-light via-white to-champagne bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-l from-turquoise-light via-white to-champagne bg-clip-text text-transparent">
               اقیانوس
             </span>
           </h1>
 
-          <p className="mt-5 max-w-lg text-[13.5px] leading-7 text-white/85 text-shadow-hero sm:mt-6 sm:text-[15.5px] sm:leading-8">
+          <p className="mt-5 max-w-[400px] text-[13.5px] leading-7 text-white/85 text-shadow-hero sm:text-[15px] sm:leading-8">
             تجربه‌ای متفاوت از طراوت، قدرت و ماندگاری؛ عطری برای کسانی که خاص بودن را انتخاب می‌کنند.
           </p>
 
           {/* Featured product */}
-          <div className="mt-8 inline-flex flex-wrap items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md">
+          <div className="mt-7 inline-flex flex-wrap items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-md">
             <span className="min-w-0">
               <span className="block text-[13px] font-semibold text-white">عطر آبی اسکیوبا</span>
-              <span className="tnum block text-[12px] text-champagne">
-                {toFaNumber(hero.price)} تومان
-              </span>
+              <span className="tnum block text-[12px] text-champagne">{toman(hero.price)}</span>
             </span>
             <span aria-hidden="true" className="hidden h-9 w-px bg-white/20 sm:block" />
             <button
@@ -79,7 +86,7 @@ export default function Hero() {
             </button>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
               to={`/product/${hero.slug}`}
               className="inline-flex items-center justify-center rounded-full bg-champagne px-8 py-4 text-[13px] font-medium uppercase tracking-wide2 text-ocean-ink transition-all duration-300 hover:bg-white active:scale-[0.98]"
@@ -94,43 +101,15 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-
-        {/* Bottle standing in the surf — anchored to the bottom edge so it reads as
-            a foreground object on the shore instead of floating in the water. */}
-        <div className="relative -mb-12 flex items-end justify-center sm:-mb-16 lg:col-span-6 lg:-mb-24 lg:self-end xl:col-span-7">
-          <div className="relative w-[64%] max-w-[235px] sm:w-[62%] sm:max-w-[300px] lg:max-w-[440px] xl:max-w-[510px]">
-            {/* soft glow so the glass reads against the water */}
-            <span
-              aria-hidden="true"
-              className="absolute inset-x-[-22%] top-[4%] -z-10 block h-[80%] rounded-[50%] bg-turquoise/15 blur-3xl"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-2 start-1/2 -z-10 block h-8 w-[70%] -translate-x-1/2 rounded-[50%] bg-ocean-ink/70 blur-xl"
-            />
-
-            <img
-              src={IMG.heroBottle}
-              alt="عطر آبی اسکیوبا — بطری شیشه‌ای آبی روی صخره‌های کنار دریا"
-              className="mask-bottle mix-blend-screen relative aspect-[4/5] w-full animate-floaty object-cover object-[50%_58%] drop-shadow-[0_35px_45px_rgba(2,30,44,0.75)]"
-            />
-          </div>
-        </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute inset-x-0 bottom-6 z-10 flex flex-col items-center gap-2">
+      <div className="absolute inset-x-0 bottom-6 z-10 hidden flex-col items-center gap-2 xl:flex">
         <span className="text-[10px] tracking-wide2 text-white/50">اسکرول کنید</span>
         <span className="relative block h-12 w-px overflow-hidden bg-white/20">
           <span className="animate-scrollHint absolute inset-x-0 top-0 block h-4 bg-champagne" />
         </span>
       </div>
-
-      {/* Fade into the page body */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 z-[5] h-24 bg-gradient-to-t from-ocean-ink to-transparent"
-      />
     </section>
   )
 }

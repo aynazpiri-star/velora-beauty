@@ -36,10 +36,24 @@ photos silently came back as empty boxes. Adding a photo means downloading it in
 `public/images/` (Pexels CDN URLs accept `?auto=compress&cs=tinysrgb&w=<width>`; use 1920 for the
 hero, 900–1200 elsewhere) and referencing the local path.
 
-The hero (`src/components/home/Hero.jsx`) is two photographs, not a gradient: `hero-ocean.jpg`
-as the full-bleed backdrop and `hero-bottle.jpg` (frosted teal bottle on wet stones, dark studio
-frame) layered in the foreground with the `.mask-bottle` mask plus `mix-blend-screen`, so there is
-no visible rectangle or halo. It stays visible on phones at ~62% column width.
+The hero (`src/components/home/Hero.jsx`) is one photograph, not a gradient or a studio cut-out:
+`hero-scuba.jpg` (1472×748) — turquoise surf breaking over the coastal rocks, the sapphire Scuba
+bottle with its gold collar and faceted cap standing centre frame, and the brand's oversized AURA
+wordmark behind it.
+
+That file is derived from the brand's own campaign artwork, kept untouched at
+`public/images/hero-reference.jpg` (736×414, do not overwrite it). The recipe, applied with a sharp
+script in `/tmp`: crop the artwork's own navigation strip off the top (40px), lift the baked-in
+English ad copy out of the lower-left by median-filtering that rectangle and then cloning the
+flipped right-hand rock texture over it through a widely feathered mask with a soft falloff toward
+the bottom-left corner, then upscale 2× (lanczos3) with a light unsharp pass. Replace
+`hero-scuba.jpg` with a real high-resolution photograph of the same scene the moment one exists —
+it is the only soft asset in the storefront at 1920px.
+
+Persian hero copy is real HTML over the negative space on the start (right) side, and the overlay
+layout only engages from `xl` (1280px): the copy column clears the centre-framed bottle there,
+and narrower viewports get the stacked arrangement (photograph band on top, copy on the ocean-ink
+panel beneath) so the bottle is never covered.
 
 ## Sandbox-only configuration
 

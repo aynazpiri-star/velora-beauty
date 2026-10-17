@@ -38,19 +38,19 @@ export default function Logo({
       to={to}
       onClick={onClick}
       aria-label="AURA PARFUMS — صفحه اصلی"
-      className={classNames('group flex items-center gap-3', ink, className)}
+      className={classNames('group flex items-center gap-2 sm:gap-3', ink, className)}
     >
       <BrandMark
         className={classNames(
           'shrink-0 transition-transform duration-500 group-hover:rotate-[8deg]',
-          compact ? 'h-7 w-7' : 'h-9 w-9',
+          compact ? 'h-7 w-7' : 'h-8 w-8 sm:h-9 sm:w-9',
         )}
       />
       <span className="flex flex-col leading-none">
         <span
           className={classNames(
             'brand-wordmark font-display font-medium',
-            compact ? 'text-[15px]' : 'text-[17px] sm:text-[19px]',
+            compact ? 'text-[15px]' : 'text-[15px] sm:text-[19px]',
           )}
         >
           AURA

@@ -17,6 +17,9 @@ const scene = (name) => `/images/scenes/${name}.jpg`
 export const IMG = {
   oceanHero: '/images/hero-ocean.jpg',
   heroBottle: '/images/hero-bottle.jpg',
+  // Home hero: the ocean campaign photograph (surf on coastal rocks with the
+  // sapphire Scuba bottle and the oversized AURA wordmark). See AGENTS.md.
+  scubaHero: '/images/hero-scuba.jpg',
   oceanDusk: scene('ocean-dusk'),
   oceanRocks: scene('ocean-rocks'),
   seaTexture: scene('sea-texture'),

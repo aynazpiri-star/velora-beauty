@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, Search, ShoppingBag, User } from 'lucide-react'
-import { NAV } from '../../data/content'
 import { useStore } from '../../context/StoreContext'
 import { classNames } from '../../lib/classNames'
 import { toFaDigits } from '../../lib/format'
 import Logo from '../ui/Logo'
 
+/**
+ * Three-zone header: menu (start), brand (centre), utilities (end).
+ *
+ * The zones are a real `1fr auto 1fr` grid — never absolutely positioned — so the
+ * centred logo can never be overlapped by the side columns: the outer tracks split
+ * whatever space is left next to the brand and the side rows align themselves to
+ * their own edge. Navigation lives in the menu drawer at every width, which is why
+ * `MobileMenu` is no longer hidden on desktop.
+ */
 export default function Header() {
   const { cartCount, setCartOpen, setSearchOpen, setMenuOpen } = useStore()
   const [scrolled, setScrolled] = useState(false)
@@ -25,66 +33,39 @@ export default function Header() {
 
   const solid = scrolled
 
+  const iconTone = solid ? 'text-ink hover:bg-ink/5' : 'text-white hover:bg-white/10'
+
   return (
     <header
       className={classNames(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500',
         solid
-          ? 'border-b border-ivory-line bg-ivory/95 py-2.5 backdrop-blur-md shadow-[0_10px_40px_-30px_rgba(6,59,85,0.6)]'
-          : 'border-b border-white/10 bg-gradient-to-b from-ocean-ink/55 to-transparent py-4',
+          ? 'border-b border-ivory-line bg-ivory/95 py-2 backdrop-blur-md shadow-[0_10px_40px_-30px_rgba(6,59,85,0.6)]'
+          : 'border-b border-white/10 bg-gradient-to-b from-ocean-ink/55 to-transparent py-2.5',
       )}
     >
-      <div className="container-x flex items-center justify-between gap-4">
-        {/* Start (right in RTL): mobile trigger + desktop navigation */}
-        <div className="flex items-center gap-3">
+      <div className="container-x grid h-12 grid-cols-[1fr_auto_1fr] items-center gap-2 sm:h-14 sm:gap-4 lg:h-[68px] lg:gap-8">
+        {/* Start (right in RTL): the menu — the only navigation trigger at any width */}
+        <div className="flex min-w-0 items-center justify-start">
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className={classNames(
-              'rounded-full p-2 transition lg:hidden',
-              solid ? 'text-ink hover:bg-ink/5' : 'text-white hover:bg-white/10',
-            )}
+            className={classNames('rounded-full p-2 transition', iconTone)}
             aria-label="باز کردن منو"
           >
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
-
-          <nav aria-label="فهرست اصلی" className="hidden items-center gap-7 lg:flex">
-            {NAV.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === '/'}
-                className={({ isActive }) =>
-                  classNames(
-                    'link-underline text-[12.5px] font-medium tracking-wide2 transition-colors',
-                    solid
-                      ? isActive
-                        ? 'text-turquoise-dark'
-                        : 'text-ink hover:text-turquoise-dark'
-                      : isActive
-                        ? 'text-champagne'
-                        : 'text-white/90 hover:text-champagne',
-                  )
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
         </div>
 
-        <Logo tone={solid ? 'ink' : 'light'} className="lg:absolute lg:left-1/2 lg:-translate-x-1/2" />
+        {/* Centre: brand — its own column, so it never collides with the sides */}
+        <Logo tone={solid ? 'ink' : 'light'} className="justify-self-center" />
 
         {/* End (left in RTL): utilities */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex min-w-0 items-center justify-end gap-0.5 sm:gap-1.5">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className={classNames(
-              'rounded-full p-2 transition',
-              solid ? 'text-ink hover:bg-ink/5' : 'text-white hover:bg-white/10',
-            )}
+            className={classNames('rounded-full p-2 transition', iconTone)}
             aria-label="جست‌وجوی محصولات"
           >
             <Search className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -92,10 +73,7 @@ export default function Header() {
 
           <Link
             to="/account"
-            className={classNames(
-              'hidden rounded-full p-2 transition sm:block',
-              solid ? 'text-ink hover:bg-ink/5' : 'text-white hover:bg-white/10',
-            )}
+            className={classNames('hidden rounded-full p-2 transition sm:block', iconTone)}
             aria-label="حساب کاربری"
           >
             <User className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -104,10 +82,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className={classNames(
-              'relative rounded-full p-2 transition',
-              solid ? 'text-ink hover:bg-ink/5' : 'text-white hover:bg-white/10',
-            )}
+            className={classNames('relative rounded-full p-2 transition', iconTone)}
             aria-label={`سبد خرید، ${toFaDigits(cartCount)} کالا`}
           >
             <ShoppingBag className="h-[18px] w-[18px]" aria-hidden="true" />

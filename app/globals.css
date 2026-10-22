@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --wine: #361216;
+  --ivory: #f9f3f0;
+  --cream: #eadbd3;
+  --gold: #c8a98d;
+  --ink: #2d1d1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--ivory);
+  color: var(--ink);
+  font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #c8a98d;
+  color: #361216;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 md:px-8;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-medium tracking-[0.34em] text-gold;
+  }
+
+  .section-title {
+    @apply text-[clamp(1.7rem,3.1vw,2.7rem)] font-normal leading-[1.35] text-ink;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[3px] px-7 py-3 text-[13px] font-medium leading-none transition-all duration-300 ease-luxe;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-wine hover:bg-gold-light hover:shadow-[0_14px_30px_-14px_rgba(200,169,141,0.9)];
+  }
+
+  .btn-wine {
+    @apply btn bg-wine text-ivory hover:bg-wine-soft;
+  }
+
+  .btn-ghost-light {
+    @apply btn border border-ivory/45 text-ivory hover:border-ivory hover:bg-ivory hover:text-wine;
+  }
+
+  .btn-ghost-dark {
+    @apply btn border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-ivory;
+  }
+
+  .luxe-link {
+    @apply relative text-[13px] text-ink/80 transition-colors duration-300 hover:text-wine;
+  }
+
+  .luxe-link::after {
+    content: "";
+    @apply absolute -bottom-1 right-0 h-px w-0 bg-gold transition-all duration-300;
+  }
+
+  .luxe-link:hover::after {
+    @apply w-full;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -27,11 +27,11 @@ docker compose -f docker-compose.base44.yml up -d --build
   story arch 1.08, instagram tiles 1.08, testimonial avatars 1:1, newsletter gift 1.4.
 - Crops deliberately exclude text baked into the reference (hero script line, gift-banner
   heading) — keep that in mind before re-cropping.
-- **The homepage hero is not cropped:** `public/images/hero-aurelia.png` (1847×852, ratio
-  2.168) is a client-supplied full screenshot rendered as-is at `w-full h-auto` below the
-  header. It already contains its own announcement bar, AURELIA header and the 4-item
-  service strip, so those repeat inside it; the client explicitly asked for the image
-  unmodified, so do not crop or overlay it without asking.
+- **Hero photo:** `public/images/hero-model-aurelia.jpg` (1140×625, ratio 1.824) is cropped
+  from a client screenshot that also contained its own header, baked headline and service
+  strip. Only the photograph region (x 0–1140, y 140–765) is used — the rest is never
+  rendered, and the hero headline/CTA are real HTML. Re-cropping needs the original
+  screenshot, which is not kept in the repo.
 - Fonts are self-hosted in `public/fonts` (Vazirmatn for Persian, Jost + Cormorant Garamond
   for Latin). The `@font-face` declarations are in `src/index.css`; without Vazirmatn the
   Persian text falls back to Tahoma.

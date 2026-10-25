@@ -23,10 +23,15 @@ docker compose -f docker-compose.base44.yml up -d --build
   the highest-fidelity source available, but it is low resolution: swapping in the original
   high-resolution campaign photos (same filenames, same aspect ratios) is the single
   biggest quality win. Aspect ratios currently used:
-  hero 1.26, product cards 1.32, category circles 1:1, split banners ~1.07,
+  product cards 1.32, category circles 1:1, split banners ~1.07,
   story arch 1.08, instagram tiles 1.08, testimonial avatars 1:1, newsletter gift 1.4.
 - Crops deliberately exclude text baked into the reference (hero script line, gift-banner
   heading) — keep that in mind before re-cropping.
+- **The homepage hero is not cropped:** `public/images/hero-aurelia.png` (1847×852, ratio
+  2.168) is a client-supplied full screenshot rendered as-is at `w-full h-auto` below the
+  header. It already contains its own announcement bar, AURELIA header and the 4-item
+  service strip, so those repeat inside it; the client explicitly asked for the image
+  unmodified, so do not crop or overlay it without asking.
 - Fonts are self-hosted in `public/fonts` (Vazirmatn for Persian, Jost + Cormorant Garamond
   for Latin). The `@font-face` declarations are in `src/index.css`; without Vazirmatn the
   Persian text falls back to Tahoma.

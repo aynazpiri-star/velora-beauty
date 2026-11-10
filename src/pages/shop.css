@@ -1,0 +1,228 @@
+.shop-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.shop-count {
+  font-size: 0.84rem;
+  color: var(--ink-3);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+
+.shop-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  padding: 9px 17px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.83rem;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.02);
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.chip:hover {
+  color: #fff;
+  border-color: var(--line-strong);
+}
+
+.chip.is-active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(115deg, var(--accent), var(--accent-2));
+  box-shadow: 0 12px 26px -14px var(--accent);
+}
+
+.shop-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.shop-search,
+.shop-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ink-3);
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.shop-search:focus-within,
+.shop-sort:focus-within {
+  border-color: rgba(255, 46, 136, 0.5);
+}
+
+.shop-search input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 190px;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.shop-search input::placeholder {
+  color: #6d6a78;
+}
+
+.shop-sort select {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 0.85rem;
+  color: var(--ink);
+  appearance: none;
+  cursor: pointer;
+  padding-inline-end: 4px;
+}
+
+.shop-sort option {
+  background: #14141b;
+  color: var(--ink);
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.5vw, 20px);
+}
+
+/* categories page */
+
+.categories-page__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.cat-tile {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  min-height: 300px;
+}
+
+.cat-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.cat-tile:hover img {
+  transform: scale(1.06);
+}
+
+.cat-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 6, 9, 0.94), rgba(6, 6, 9, 0.2) 65%);
+}
+
+.cat-tile__body {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: clamp(18px, 2vw, 26px);
+}
+
+.cat-tile__body b {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+}
+
+.cat-tile__body span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.cat-tile__count {
+  margin-top: 12px;
+  font-size: 0.76rem;
+  color: #fff;
+  opacity: 0.75;
+}
+
+@media (max-width: 1120px) {
+  .shop-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .categories-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .shop-controls {
+    width: 100%;
+  }
+
+  .shop-search,
+  .shop-sort {
+    flex: 1;
+  }
+
+  .shop-search input {
+    width: 100%;
+  }
+
+  .categories-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}

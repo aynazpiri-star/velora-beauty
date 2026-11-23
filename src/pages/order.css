@@ -1,0 +1,140 @@
+.order__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: clamp(28px, 4vw, 46px);
+}
+
+.order__check {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--choco);
+  color: var(--cream);
+}
+
+.order__head h1 {
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.order__code {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.order__code strong {
+  color: var(--ink);
+  letter-spacing: 0.08em;
+}
+
+.order__meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.order__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: clamp(18px, 3vw, 34px);
+  align-items: start;
+}
+
+.order__card {
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 24px;
+  background: var(--cream);
+  border: 1px solid rgba(27, 19, 16, 0.08);
+}
+
+.order__card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.order__items {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.86rem;
+}
+
+.order__items li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.order__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.order__item small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.order__totals {
+  margin-top: 6px;
+}
+
+.order__card--info dl {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.order__card--info dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.order__card--info dd {
+  margin: 2px 0 0;
+  line-height: 1.8;
+}
+
+.order__note {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.76rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.order__back {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.order-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-block: clamp(40px, 8vw, 90px);
+  color: var(--muted);
+}
+
+.order-state h1 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .order__grid {
+    grid-template-columns: 1fr;
+  }
+}

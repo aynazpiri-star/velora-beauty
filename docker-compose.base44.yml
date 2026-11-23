@@ -1,0 +1,74 @@
+name: velora
+
+services:
+  # One-shot dependency install so `api` and `web` never run npm concurrently
+  # against the bind-mounted node_modules.
+  deps:
+    image: node:22
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - npm_config_audit=false
+      - npm_config_fund=false
+    command: ["sh", "-ec", "npm install --no-audit --no-fund"]
+    restart: "no"
+
+  api:
+    image: node:22
+    working_dir: /app
+    restart: on-failure
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+      - DATA_DIR=/app/.data
+    command: ["node", "server/index.js"]
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:8000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  web:
+    image: node:22
+    working_dir: /app
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      deps:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+    environment:
+      - BASE44_PREVIEW_MODE
+      - BASE44_SANDBOX_HOST_DOMAIN
+      - BASE44_PUBLIC_HOST_SUFFIX
+      - API_URL=http://api:8000
+    command: ["npx", "vite", "--host", "0.0.0.0", "--port", "3000"]
+    ports:
+      - "3000:3000"
+    labels:
+      base44.project: "Velora"
+      base44.kind: "web"
+      base44.port: "3000"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
